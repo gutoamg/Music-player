@@ -15,17 +15,21 @@ const buttonClicked = () => {
         audio.pause();
         buttons[1].style.display = "none";
         buttons[0].style.display = "block";
-    } else if (buttons[2].style.display === "block") {
-        audio.currentTime = 0;
-        audio.play();
-        buttons[2].style.display = "none";
-        buttons[1].style.display = "block";
-    }
+    } 
+    // else if (buttons[2].style.display === "block") {
+    //     audio.currentTime = 0;
+    //     audio.play();
+    //     buttons[2].style.display = "none";
+    //     buttons[1].style.display = "block";
+    // }
 };
 buttonContainer.addEventListener("click", buttonClicked);
 
-audio.addEventListener("ended", () => {
+const musicEnded = () => {
     buttons[0].style.display = "none";
-    buttons[1].style.display = "none";
-    buttons[2].style.display = "block";
-});
+    buttons[1].style.display = "block";
+    //buttons[2].style.display = "block";
+    audio.currentTime = 0;
+    audio.play();
+};
+audio.addEventListener("ended", musicEnded);
